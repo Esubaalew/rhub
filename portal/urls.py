@@ -1,3 +1,6 @@
+from django.conf import settings
+from django.conf.urls.static import static
+
 from . import views
 from django.urls import path
 
@@ -8,3 +11,4 @@ urlpatterns = [
     path('research/', views.research_list, name='research'),  # Research page route
     path('research/<int:research_id>/', views.research_detail, name='research_detail'),
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
