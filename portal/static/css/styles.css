@@ -12,6 +12,26 @@ footer {
     padding: 20px 0;
 }
 
+/* Ensure body and html are full height */
+html, body {
+    height: 100%;
+}
+
+/* Container for page content to push footer down */
+main.container {
+    flex-grow: 1;
+}
+
+/* Footer should stay at the bottom */
+footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
 
 
 /* Authors page custom styles */
