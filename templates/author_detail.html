@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ author.first_name }} {{ author.last_name }} - Author Profile{% endblock %}
+
+{% block content %}
+<section class="my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ author.first_name }} {{ author.last_name }}</h2>
+                        <p><strong>Email:</strong> {{ author.email }}</p>
+                        <hr>
+                        <h5>Researches by {{ author.first_name }}</h5>
+                        <ul>
+                            {% for research in author.researches.all %}
+                            <li><a href="{% url 'research_detail' research.id %}">{{ research.title }}</a></li>
+                            {% empty %}
+                            <li>No research available.</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

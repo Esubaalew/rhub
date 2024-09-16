@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Authors - Research Portal{% endblock %}
+
+{% block content %}
+<section class="my-5">
+    <div class="container">
+        <h2 class="mb-4 text-center">Meet Our Authors</h2>
+        <div class="row">
+            <!-- Loop through all authors and display them -->
+            {% for author in all_authors %}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ author.first_name }} {{ author.last_name }}</h5>
+                        <p class="card-text">{{ author.email }}</p>
+                        <a href="{% url 'author_detail' author.id %}" class="btn btn-secondary">View Profile</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>No authors available at the moment.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

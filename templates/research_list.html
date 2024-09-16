@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Research - Research Portal{% endblock %}
+
+{% block content %}
+<section class="my-5">
+    <div class="container">
+        <h2 class="mb-4 text-center">All Research</h2>
+        <div class="row">
+            <!-- Loop through all research and display them -->
+            {% for research in all_research %}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ research.title }}</h5>
+                        <p class="card-text">{{ research.summary|truncatewords:20 }}</p>
+                        <a href="{% url 'research_detail' research.id %}" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>No research available at the moment.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

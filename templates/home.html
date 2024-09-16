@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Research Portal{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="py-5 text-center bg-light">
+    <div class="container">
+        <h1>Welcome to the Research Portal</h1>
+        <p class="lead">Explore the latest research from various departments and authors.</p>
+        <a href="{% url 'research' %}" class="btn btn-primary btn-lg">Browse Research</a>
+    </div>
+</section>
+
+<!-- Recent Research Section -->
+<section class="my-5">
+    <div class="container">
+        <h2 class="mb-4">Recent Research</h2>
+        <div class="row">
+            <!-- Example of Research Card (Loop through research items in template) -->
+            {% for research in recent_research %}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ research.title }}</h5>
+                        <p class="card-text">{{ research.summary|truncatewords:20 }}</p>
+                        <a href="{% url 'research_detail' research.id %}" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Featured Authors Section -->
+<section class="my-5 bg-light py-5">
+    <div class="container">
+        <h2 class="mb-4">Featured Authors</h2>
+        <div class="row">
+            <!-- Example of Author Card (Loop through authors) -->
+            {% for author in featured_authors %}
+            <div class="col-md-3">
+                <div class="card mb-4 shadow-sm text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ author.first_name }} {{ author.last_name }}</h5>
+                        <p class="card-text">{{ author.email }}</p>
+                        <a href="{% url 'author_detail' author.id %}" class="btn btn-secondary">View Profile</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

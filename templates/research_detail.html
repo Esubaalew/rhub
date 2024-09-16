@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ research.title }} - Research Details{% endblock %}
+
+{% block content %}
+<section class="my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ research.title }}</h2>
+                        <p><strong>Department:</strong> {{ research.department.name }}</p>
+                        <hr>
+                        <p>{{ research.summary }}</p>
+
+                        <h5>Authors</h5>
+                        <ul>
+                            {% for author in research.authors.all %}
+                            <li><a href="{% url 'author_detail' author.id %}">{{ author.first_name }} {{ author.last_name }}</a></li>
+                            {% empty %}
+                            <li>No authors available.</li>
+                            {% endfor %}
+                        </ul>
+
+                        <hr>
+                        <h5>Research File</h5>
+                        {% if research.file %}
+                        <a href="{{ research.file.url }}" class="btn btn-primary" download>Download File</a>
+                        {% else %}
+                        <p>No file available.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
